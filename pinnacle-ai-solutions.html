@@ -1,0 +1,2871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinnacle AI Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --secondary-dark: #db2777;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .gradient-border {
+            position: relative;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-radius: 0.5rem;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: -1;
+        }
+        
+        .card {
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .service-card {
+            height: 100%;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            z-index: -1;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(to right, var(--primary-dark), var(--secondary-dark));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .navbar {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            color: var(--gray);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--light);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 80%;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.2), transparent 70%),
+                        radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.2), transparent 70%);
+            z-index: -1;
+        }
+        
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .feature-card {
+            border-radius: 1rem;
+            padding: 2rem;
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .testimonial-card {
+            border-radius: 1rem;
+            padding: 2rem;
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .testimonial-quote {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .testimonial-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.5;
+            font-family: 'Georgia', serif;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            background-color: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+            outline: none;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 0 0.5rem;
+        }
+        
+        .social-icon:hover {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transform: translateY(-3px);
+        }
+        
+        .footer {
+            background-color: var(--dark-light);
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--primary), var(--secondary), transparent);
+        }
+        
+        .footer-title {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .footer-link {
+            color: var(--gray);
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-link:hover {
+            color: var(--light);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* Glowing effect */
+        .glow {
+            position: relative;
+        }
+        
+        .glow::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .glow:hover::after {
+            opacity: 1;
+        }
+        
+        /* Typing animation */
+        .typing {
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+        
+        /* Particle effect */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            opacity: 0.5;
+        }
+        
+        /* Blob animation */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: blob-animation 15s infinite alternate;
+        }
+        
+        @keyframes blob-animation {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, -50px) scale(1.1); }
+            66% { transform: translate(-50px, 100px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--primary-dark), var(--secondary-dark));
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding-top: 6rem;
+                text-align: center;
+            }
+            
+            .section-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .navbar-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--dark-light);
+                z-index: 100;
+                padding: 2rem;
+                transition: all 0.3s ease;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .navbar-menu.active {
+                right: 0;
+            }
+            
+            .nav-link::after {
+                display: none;
+            }
+            
+            .nav-link {
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+        
+        /* AI-specific elements */
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ai-badge i {
+            margin-right: 0.25rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tech-item {
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+        
+        .code-block {
+            background-color: rgba(15, 23, 42, 0.9);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .code-line {
+            display: block;
+            color: var(--gray);
+        }
+        
+        .code-comment {
+            color: #6b7280;
+        }
+        
+        .code-keyword {
+            color: #ec4899;
+        }
+        
+        .code-function {
+            color: #6366f1;
+        }
+        
+        .code-string {
+            color: #10b981;
+        }
+        
+        .code-number {
+            color: #f59e0b;
+        }
+        
+        .ai-model-card {
+            border-radius: 1rem;
+            padding: 1.5rem;
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-model-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        .ai-model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .ai-model-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        
+        .ai-model-card:hover .ai-model-icon {
+            transform: scale(1.1);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .ai-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .ai-stat {
+            text-align: center;
+        }
+        
+        .ai-stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+        
+        .ai-stat-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0.5rem 0 1rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+            transition: width 1s ease;
+        }
+        
+        /* Neural network animation */
+        .neural-network {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin: 2rem 0;
+        }
+        
+        .node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .connection {
+            position: absolute;
+            height: 2px;
+            background-color: rgba(99, 102, 241, 0.3);
+            transform-origin: left center;
+        }
+        
+        /* Typing indicator */
+        .typing-indicator {
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            margin: 0 2px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            animation: typing-dot 1.4s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing-dot {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+        
+        /* Data visualization */
+        .data-chart {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+        
+        .data-bar {
+            width: 8%;
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            border-radius: 4px 4px 0 0;
+            transition: height 1s ease;
+        }
+        
+        /* Cursor effect */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(99, 102, 241, 0.5);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+        }
+        
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9998;
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--primary);
+            border-bottom-color: var(--secondary);
+            animation: spin 1.5s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+        }
+        
+        .tooltip-text {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--dark-light);
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--dark-light) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-text {
+            opacity: 1;
+            visibility: visible;
+            bottom: calc(100% + 10px);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem;
+            background-color: var(--dark-light);
+            border-left: 4px solid var(--primary);
+            border-radius: 0.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 100;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            z-index: 9999;
+            width: 0%;
+        }
+        
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Hamburger menu */
+        .hamburger {
+            width: 30px;
+            height: 20px;
+            position: relative;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--light);
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+        
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+        
+        .hamburger span:nth-child(2), .hamburger span:nth-child(3) {
+            top: 9px;
+        }
+        
+        .hamburger span:nth-child(4) {
+            top: 18px;
+        }
+        
+        .hamburger.open span:nth-child(1) {
+            top: 9px;
+            width: 0%;
+            left: 50%;
+        }
+        
+        .hamburger.open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+        
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+        
+        .hamburger.open span:nth-child(4) {
+            top: 9px;
+            width: 0%;
+            left: 50%;
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                z-index: 101;
+            }
+        }
+        
+        /* Chatbot */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 98;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 450px;
+            background-color: var(--dark-light);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 98;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        
+        .chatbot-container.active {
+            transform: scale(1);
+        }
+        
+        .chatbot-header {
+            padding: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .chatbot-input {
+            padding: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.25rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+        }
+        
+        .chatbot-input button {
+            padding: 0.75rem 1rem;
+            margin-left: 0.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+        }
+        
+        .message-content {
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+        }
+        
+        .message.user {
+            margin-left: auto;
+        }
+        
+        .message.user .message-content {
+            background-color: var(--primary);
+            color: white;
+            border-top-right-radius: 0;
+        }
+        
+        .message.bot {
+            margin-right: auto;
+        }
+        
+        .message.bot .message-content {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            border-top-left-radius: 0;
+        }
+        
+        /* Pricing table */
+        .pricing-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+        
+        .pricing-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--light);
+            margin: 1rem 0;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .pricing-features {
+            padding: 2rem;
+        }
+        
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-feature i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        
+        .pricing-cta {
+            padding: 0 2rem 2rem;
+            text-align: center;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.1);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .timeline-item.left {
+            left: 0;
+        }
+        
+        .timeline-item.right {
+            left: 50%;
+        }
+        
+        .timeline-item.left::after {
+            right: -10px;
+        }
+        
+        .timeline-item.right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item.right {
+                left: 0;
+            }
+            
+            .timeline-item.left::after, .timeline-item.right::after {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- Cursor Effect -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator"></div>
+    
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- Chatbot -->
+    <div class="chatbot-toggle">
+        <i class="fas fa-robot"></i>
+    </div>
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <div>
+                <h3>AI Assistant</h3>
+                <small>Powered by Pinnacle AI</small>
+            </div>
+            <button class="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages">
+            <div class="message bot">
+                <div class="message-content">
+                    Hello! I'm your AI assistant. How can I help you today?
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" placeholder="Type your message...">
+            <button>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Notification -->
+    <div class="notification">
+        <button class="notification-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <h4>Welcome to Pinnacle AI!</h4>
+        <p>Explore our cutting-edge AI solutions.</p>
+    </div>
+    
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full z-50 py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-center">
+                <span class="gradient-text">Pinnacle AI</span>
+                <br>
+                <span class="text-sm font-medium text-gray-300">SOLUTIONS</span>
+            </a>
+            
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <ul class="navbar-menu hidden md:flex space-x-6">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#ai-solutions" class="nav-link">AI Solutions</a></li>
+                <li><a href="#integrations" class="nav-link">Integrations</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <a href="#contact" class="btn btn-primary hidden md:block">AI PROGRAMS <br>FOR SALE</a>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-particles"></div>
+        <div class="blob" style="top: 20%; left: 10%;"></div>
+        <div class="blob" style="bottom: 10%; right: 5%;"></div>
+        
+        <div class="container mx-auto px-4 py-20 md:py-32">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="ai-badge mb-4">
+                        <i class="fas fa-robot"></i> Next-Gen AI
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+                        Transforming Business with 
+                        <span class="gradient-text">Intelligent AI</span> Solutions
+                    </h1>
+                    <p class="text-gray-400 text-lg mb-8">
+                        Pinnacle AI delivers cutting-edge artificial intelligence solutions that drive innovation, 
+                        efficiency, and growth for businesses of all sizes.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#services" class="btn btn-primary">
+                            Explore Services <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            Contact Us
+                        </a>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <div class="tech-item">Machine Learning</div>
+                        <div class="tech-item">Neural Networks</div>
+                        <div class="tech-item">Computer Vision</div>
+                        <div class="tech-item">NLP</div>
+                        <div class="tech-item">Data Analytics</div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://images.unsplash.com/photo-1677442135136-760c813028c0?q=80&w=2832&auto=format&fit=crop" alt="AI Visualization" class="w-full max-w-md float">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-20 md:py-32 relative">
+        <div class="blob" style="top: 30%; right: 10%;"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Our Services</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    We offer a comprehensive suite of AI-powered services designed to help your business thrive in the digital age.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">App Development</h3>
+                    <p class="text-gray-400 mb-4">
+                        Custom mobile and web application development tailored to your needs with AI integration.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Cross-platform development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Native app development
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            UI/UX design
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Backend development
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Deployment</h3>
+                    <p class="text-gray-400 mb-4">
+                        Seamless and efficient deployment of your applications to various environments.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Cloud deployment (AWS, Azure, GCP)
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Containerization (Docker, Kubernetes)
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            CI/CD pipeline setup
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Infrastructure as Code (IaC)
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card card">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Maintenance</h3>
+                    <p class="text-gray-400 mb-4">
+                        Ongoing support and maintenance to ensure your applications run smoothly.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            24/7 support
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Performance optimization
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Security updates
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Bug fixing
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Mobile Security</h3>
+                    <p class="text-gray-400 mb-4">
+                        Robust security solutions to protect your mobile applications from threats.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Vulnerability assessment
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Penetration testing
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Code hardening
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Data encryption
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card card">
+                    <div class="service-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI Solutions</h3>
+                    <p class="text-gray-400 mb-4">
+                        Leveraging the power of artificial intelligence to drive innovation and efficiency.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Machine learning
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Natural language processing
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Computer vision
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Predictive analytics
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card card">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Integrations & Automation</h3>
+                    <p class="text-gray-400 mb-4">
+                        Connecting your systems and automating workflows for efficiency.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            API integration
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            Workflow automation
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            RPA (Robotic Process Automation)
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            System integration
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI Solutions Section -->
+    <section id="ai-solutions" class="py-20 md:py-32 relative bg-dark-light">
+        <div class="blob" style="top: 10%; left: 5%;"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">AI Solutions</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Harness the power of artificial intelligence to transform your business and gain a competitive edge.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AI Solution 1 -->
+                <div class="ai-model-card">
+                    <div class="ai-model-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Predictive Analytics</h3>
+                    <p class="text-gray-400 mb-4">
+                        Forecast future outcomes and make data-driven decisions with our advanced predictive analytics solutions.
+                    </p>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-400">Accuracy</span>
+                            <span class="text-sm text-gray-400">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="ai-stats">
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">99.8%</div>
+                            <div class="ai-stat-label">Uptime</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">50ms</div>
+                            <div class="ai-stat-label">Response</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">24/7</div>
+                            <div class="ai-stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Solution 2 -->
+                <div class="ai-model-card">
+                    <div class="ai-model-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Computer Vision</h3>
+                    <p class="text-gray-400 mb-4">
+                        Enable systems to 'see' and interpret visual data, unlocking new possibilities for automation and analysis.
+                    </p>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-400">Accuracy</span>
+                            <span class="text-sm text-gray-400">98%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 98%;"></div>
+                        </div>
+                    </div>
+                    <div class="ai-stats">
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">99.9%</div>
+                            <div class="ai-stat-label">Uptime</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">30ms</div>
+                            <div class="ai-stat-label">Response</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">24/7</div>
+                            <div class="ai-stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Solution 3 -->
+                <div class="ai-model-card">
+                    <div class="ai-model-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Natural Language Processing</h3>
+                    <p class="text-gray-400 mb-4">
+                        Empower your applications to understand, interpret, and generate human language.
+                    </p>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-400">Accuracy</span>
+                            <span class="text-sm text-gray-400">96%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 96%;"></div>
+                        </div>
+                    </div>
+                    <div class="ai-stats">
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">99.7%</div>
+                            <div class="ai-stat-label">Uptime</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">45ms</div>
+                            <div class="ai-stat-label">Response</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">24/7</div>
+                            <div class="ai-stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Solution 4 -->
+                <div class="ai-model-card">
+                    <div class="ai-model-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Machine Learning</h3>
+                    <p class="text-gray-400 mb-4">
+                        Develop intelligent systems that can learn from data and improve their performance over time.
+                    </p>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-400">Accuracy</span>
+                            <span class="text-sm text-gray-400">97%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 97%;"></div>
+                        </div>
+                    </div>
+                    <div class="ai-stats">
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">99.8%</div>
+                            <div class="ai-stat-label">Uptime</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">40ms</div>
+                            <div class="ai-stat-label">Response</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">24/7</div>
+                            <div class="ai-stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Solution 5 -->
+                <div class="ai-model-card">
+                    <div class="ai-model-icon">
+                        <i class="fas fa-life-ring"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">AI Consulting</h3>
+                    <p class="text-gray-400 mb-4">
+                        Get expert guidance on how to leverage AI to solve your business challenges and achieve your goals.
+                    </p>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-400">Client Satisfaction</span>
+                            <span class="text-sm text-gray-400">99%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 99%;"></div>
+                        </div>
+                    </div>
+                    <div class="ai-stats">
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">100+</div>
+                            <div class="ai-stat-label">Clients</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">10+</div>
+                            <div class="ai-stat-label">Industries</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">24/7</div>
+                            <div class="ai-stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Solution 6 -->
+                <div class="ai-model-card">
+                    <div class="ai-model-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Conversational AI</h3>
+                    <p class="text-gray-400 mb-4">
+                        Create intelligent chatbots and virtual assistants that provide natural, human-like interactions.
+                    </p>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm text-gray-400">Accuracy</span>
+                            <span class="text-sm text-gray-400">94%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 94%;"></div>
+                        </div>
+                    </div>
+                    <div class="ai-stats">
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">99.6%</div>
+                            <div class="ai-stat-label">Uptime</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">60ms</div>
+                            <div class="ai-stat-label">Response</div>
+                        </div>
+                        <div class="ai-stat">
+                            <div class="ai-stat-value">24/7</div>
+                            <div class="ai-stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Neural Network Animation -->
+            <div class="neural-network mt-20"></div>
+        </div>
+    </section>
+    
+    <!-- Integrations Section -->
+    <section id="integrations" class="py-20 md:py-32 relative">
+        <div class="blob" style="bottom: 20%; right: 10%;"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Integrations & Automation</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Streamline your workflows and connect your systems with our seamless integration and automation solutions.
+                </p>
+            </div>
+            
+            <div class="card p-8 mb-12">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <h3 class="text-2xl font-semibold mb-4">Seamless System Integration</h3>
+                        <p class="text-gray-400 mb-4">
+                            We specialize in creating custom integrations that connect your disparate systems,
+                            enabling you to automate processes, improve efficiency, and gain valuable insights.
+                        </p>
+                        <ul class="text-gray-400 space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                API Integration
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Workflow Automation
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                RPA (Robotic Process Automation)
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                System Integration
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                Custom Integrations
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="code-block">
+                            <span class="code-line"><span class="code-comment">// Example API Integration</span></span>
+                            <span class="code-line"><span class="code-keyword">async function</span> <span class="code-function">integrateWithExternalAPI</span>() {</span>
+                            <span class="code-line">  <span class="code-keyword">try</span> {</span>
+                            <span class="code-line">    <span class="code-keyword">const</span> response = <span class="code-keyword">await</span> fetch(<span class="code-string">'https://api.example.com/data'</span>);</span>
+                            <span class="code-line">    <span class="code-keyword">const</span> data = <span class="code-keyword">await</span> response.json();</span>
+                            <span class="code-line">    </span>
+                            <span class="code-line">    <span class="code-comment">// Process the data with AI</span></span>
+                            <span class="code-line">    <span class="code-keyword">const</span> processedData = <span class="code-keyword">await</span> <span class="code-function">processWithAI</span>(data);</span>
+                            <span class="code-line">    </span>
+                            <span class="code-line">    <span class="code-comment">// Update your system</span></span>
+                            <span class="code-line">    <span class="code-keyword">await</span> <span class="code-function">updateSystem</span>(processedData);</span>
+                            <span class="code-line">    </span>
+                            <span class="code-line">    <span class="code-keyword">return</span> {</span>
+                            <span class="code-line">      success: <span class="code-keyword">true</span>,</span>
+                            <span class="code-line">      message: <span class="code-string">'Integration successful'</span></span>
+                            <span class="code-line">    };</span>
+                            <span class="code-line">  } <span class="code-keyword">catch</span> (error) {</span>
+                            <span class="code-line">    console.error(<span class="code-string">'Integration error:'</span>, error);</span>
+                            <span class="code-line">    <span class="code-keyword">return</span> {</span>
+                            <span class="code-line">      success: <span class="code-keyword">false</span>,</span>
+                            <span class="code-line">      message: error.message</span>
+                            <span class="code-line">    };</span>
+                            <span class="code-line">  }</span>
+                            <span class="code-line">}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Integration 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">API Integration</h3>
+                    <p class="text-gray-400">
+                        Connect your systems with third-party services through robust API integrations.
+                    </p>
+                </div>
+                
+                <!-- Integration 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Workflow Automation</h3>
+                    <p class="text-gray-400">
+                        Automate repetitive tasks and streamline your business processes.
+                    </p>
+                </div>
+                
+                <!-- Integration 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">RPA</h3>
+                    <p class="text-gray-400">
+                        Implement Robotic Process Automation to handle high-volume, repeatable tasks.
+                    </p>
+                </div>
+                
+                <!-- Integration 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">System Integration</h3>
+                    <p class="text-gray-400">
+                        Connect your internal systems for seamless data flow and improved efficiency.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Data Visualization -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-semibold mb-6 text-center">Integration Performance</h3>
+                <div class="data-chart">
+                    <div class="data-bar" style="height: 70%;"></div>
+                    <div class="data-bar" style="height: 85%;"></div>
+                    <div class="data-bar" style="height: 60%;"></div>
+                    <div class="data-bar" style="height: 90%;"></div>
+                    <div class="data-bar" style="height: 75%;"></div>
+                    <div class="data-bar" style="height: 80%;"></div>
+                    <div class="data-bar" style="height: 95%;"></div>
+                    <div class="data-bar" style="height: 65%;"></div>
+                    <div class="data-bar" style="height: 85%;"></div>
+                    <div class="data-bar" style="height: 75%;"></div>
+                </div>
+                <div class="flex justify-between text-xs text-gray-400 mt-2">
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                    <span>Jul</span>
+                    <span>Aug</span>
+                    <span>Sep</span>
+                    <span>Oct</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32 relative bg-dark-light">
+        <div class="blob" style="top: 20%; left: 15%;"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">About Us</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Pinnacle AI Solutions is a team of passionate technologists dedicated to delivering innovative
+                    solutions that drive business growth and success.
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center mb-16">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop" alt="Our Team" class="rounded-xl shadow-lg">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h3 class="text-2xl font-semibold mb-4">Our Story</h3>
+                    <p class="text-gray-400 mb-6">
+                        Founded in 2018, Pinnacle AI Solutions was born out of a passion for artificial intelligence and its potential to transform businesses. Our founders, a group of AI researchers and software engineers, saw the need for accessible, practical AI solutions that could be implemented across various industries.
+                    </p>
+                    <p class="text-gray-400 mb-6">
+                        Today, we've grown into a diverse team of experts in AI, machine learning, software development, and business strategy. We've helped hundreds of clients across the globe leverage the power of AI to solve complex problems, automate processes, and gain competitive advantages.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
+                                5+
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-400">Years of</p>
+                                <p class="font-semibold">Experience</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
+                                200+
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-400">Completed</p>
+                                <p class="font-semibold">Projects</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl">
+                                50+
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-400">Expert</p>
+                                <p class="font-semibold">Team Members</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-semibold mb-8 text-center">Our Values</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="card p-6">
+                    <h4 class="text-xl font-semibold mb-3">Innovation</h4>
+                    <p class="text-gray-400">
+                        We are committed to pushing the boundaries of technology and finding new, creative solutions to complex problems.
+                    </p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="card p-6">
+                    <h4 class="text-xl font-semibold mb-3">Excellence</h4>
+                    <p class="text-gray-400">
+                        We strive for the highest standards of quality in everything we do, from code to customer service.
+                    </p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="card p-6">
+                    <h4 class="text-xl font-semibold mb-3">Collaboration</h4>
+                    <p class="text-gray-400">
+                        We believe in the power of teamwork and open communication, both within our team and with our clients.
+                    </p>
+                </div>
+                
+                <!-- Value 4 -->
+                <div class="card p-6">
+                    <h4 class="text-xl font-semibold mb-3">Integrity</h4>
+                    <p class="text-gray-400">
+                        We operate with honesty, transparency, and ethical principles in all our business dealings.
+                    </p>
+                </div>
+                
+                <!-- Value 5 -->
+                <div class="card p-6">
+                    <h4 class="text-xl font-semibold mb-3">Customer Focus</h4>
+                    <p class="text-gray-400">
+                        We are dedicated to understanding and meeting the needs of our clients, ensuring their success is our success.
+                    </p>
+                </div>
+                
+                <!-- Value 6 -->
+                <div class="card p-6">
+                    <h4 class="text-xl font-semibold mb-3">Continuous Learning</h4>
+                    <p class="text-gray-400">
+                        We are committed to staying at the forefront of AI and technology through ongoing education and research.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 md:py-32 relative">
+        <div class="blob" style="bottom: 10%; right: 15%;"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">What Our Clients Say</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Don't just take our word for it. Here's what our clients have to say about working with Pinnacle AI Solutions.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Michael Johnson</h4>
+                            <p class="text-sm text-gray-400">CTO, TechCorp</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p class="text-gray-400">
+                            "Pinnacle AI Solutions transformed our customer service with their conversational AI. Our response times improved by 80%, and customer satisfaction scores are at an all-time high."
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sarah Williams</h4>
+                            <p class="text-sm text-gray-400">CEO, Innovate Inc.</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p class="text-gray-400">
+                            "The predictive analytics solution developed by Pinnacle has been a game-changer for our business. We can now forecast trends with remarkable accuracy, giving us a significant competitive advantage."
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Client">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">David Chen</h4>
+                            <p class="text-sm text-gray-400">COO, Global Logistics</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-quote">
+                        <p class="text-gray-400">
+                            "Implementing Pinnacle's AI-powered automation solutions has reduced our operational costs by 35% while improving accuracy. Their team was professional, knowledgeable, and a pleasure to work with."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 relative bg-dark-light">
+        <div class="blob" style="top: 30%; left: 5%;"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Contact Us</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Get in touch with us to discuss your project, request a quote, or learn more about our services.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="card p-8">
+                    <h3 class="text-2xl font-semibold mb-6">Send us a message</h3>
+                    <form class="contact-form">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Name</label>
+                            <input type="text" id="name" placeholder="Your Name" class="w-full">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                            <input type="email" id="email" placeholder="you@example.com" class="w-full">
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="block text-sm font-medium text-gray-400 mb-1">Subject</label>
+                            <input type="text" id="subject" placeholder="How can we help?" class="w-full">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                            <textarea id="message" rows="5" placeholder="Your message..." class="w-full"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm text-gray-400">Email</h4>
+                                <p>futureai4all@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm text-gray-400">Phone</h4>
+                                <p>352-231-9154</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm text-gray-400">Address</h4>
+                                <p>123 Tech Avenue, Suite 400<br>Gainesville, FL 32601</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12">
+                        <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                        <div class="flex">
+                            <a href="https://facebook.com/atozaitraining" target="_blank" class="social-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 card p-6">
+                        <h3 class="text-xl font-semibold mb-4">Office Hours</h3>
+                        <div class="space-y-2 text-gray-400">
+                            <div class="flex justify-between">
+                                <span>Monday - Friday:</span>
+                                <span>9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Saturday:</span>
+                                <span>10:00 AM - 4:00 PM</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Sunday:</span>
+                                <span>Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4">
+                        <span class="gradient-text">Pinnacle AI</span>
+                        <br>
+                        <span class="text-sm font-medium text-gray-300">SOLUTIONS</span>
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Transforming businesses with intelligent AI solutions that drive innovation, efficiency, and growth.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://facebook.com/atozaitraining" target="_blank" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#services" class="footer-link">Services</a></li>
+                        <li><a href="#ai-solutions" class="footer-link">AI Solutions</a></li>
+                        <li><a href="#integrations" class="footer-link">Integrations</a></li>
+                        <li><a href="#about" class="footer-link">About Us</a></li>
+                        <li><a href="#contact" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h3 class="footer-title">Services</h3>
+                    <ul>
+                        <li><a href="#services" class="footer-link">App Development</a></li>
+                        <li><a href="#services" class="footer-link">Deployment</a></li>
+                        <li><a href="#services" class="footer-link">Maintenance</a></li>
+                        <li><a href="#services" class="footer-link">Mobile Security</a></li>
+                        <li><a href="#ai-solutions" class="footer-link">AI Solutions</a></li>
+                        <li><a href="#integrations" class="footer-link">Integrations</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h3 class="footer-title">Contact</h3>
+                    <ul>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-envelope text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">futureai4all@gmail.com</span>
+                        </li>
+                        <li class="flex items-center mb-3">
+                            <i class="fas fa-phone text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">352-231-9154</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-gray-400 mr-2"></i>
+                            <span class="text-gray-400">123 Tech Avenue, Suite 400<br>Gainesville, FL 32601</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright text-center text-gray-400">
+                <p>&copy; 2023 Pinnacle AI Solutions. All rights reserved.</p>
+                <div class="flex justify-center mt-4 space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Preloader
+        window.addEventListener('load', function() {
+            const preloader = document.querySelector('.preloader');
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+            }, 500);
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navbarMenu = document.querySelector('.navbar-menu');
+        
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('open');
+            navbarMenu.classList.toggle('active');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    hamburger.classList.remove('open');
+                    navbarMenu.classList.remove('active');
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Scroll indicator
+        window.addEventListener('scroll', function() {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = (window.pageYOffset / totalHeight) * 100;
+            scrollIndicator.style.width = progress + '%';
+        });
+        
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Chatbot toggle
+        const chatbotToggle = document.querySelector('.chatbot-toggle');
+        const chatbotContainer = document.querySelector('.chatbot-container');
+        const chatbotClose = document.querySelector('.chatbot-close');
+        
+        chatbotToggle.addEventListener('click', function() {
+            chatbotContainer.classList.toggle('active');
+        });
+        
+        chatbotClose.addEventListener('click', function() {
+            chatbotContainer.classList.remove('active');
+        });
+        
+        // Chatbot functionality
+        const chatbotInput = document.querySelector('.chatbot-input input');
+        const chatbotSendButton = document.querySelector('.chatbot-input button');
+        const chatbotMessages = document.querySelector('.chatbot-messages');
+        
+        function addMessage(message, isUser = false) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(isUser ? 'user' : 'bot');
+            
+            const messageContent = document.createElement('div');
+            messageContent.classList.add('message-content');
+            messageContent.textContent = message;
+            
+            messageElement.appendChild(messageContent);
+            chatbotMessages.appendChild(messageElement);
+            
+            // Scroll to bottom
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+        
+        function handleUserMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                addMessage(message, true);
+                chatbotInput.value = '';
+                
+                // Simulate typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.classList.add('message', 'bot');
+                typingIndicator.innerHTML = `
+                    <div class="message-content typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                `;
+                chatbotMessages.appendChild(typingIndicator);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                
+                // Simulate bot response after delay
+                setTimeout(() => {
+                    chatbotMessages.removeChild(typingIndicator);
+                    
+                    // Simple responses based on keywords
+                    if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
+                        addMessage('Hello! How can I help you today?');
+                    } else if (message.toLowerCase().includes('service')) {
+                        addMessage('We offer a range of AI services including app development, deployment, maintenance, and more. Would you like to know more about a specific service?');
+                    } else if (message.toLowerCase().includes('contact')) {
+                        addMessage('You can reach us at futureai4all@gmail.com or call us at 352-231-9154. Would you like to schedule a consultation?');
+                    } else if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
+                        addMessage('Our pricing varies based on project requirements. Would you like to request a custom quote?');
+                    } else {
+                        addMessage('Thank you for your message. One of our team members will get back to you shortly. Is there anything else I can help you with?');
+                    }
+                }, 1500);
+            }
+        }
+        
+        chatbotSendButton.addEventListener('click', handleUserMessage);
+        chatbotInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleUserMessage();
+            }
+        });
+        
+        // Notification
+        setTimeout(() => {
+            const notification = document.querySelector('.notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }, 3000);
+        
+        document.querySelector('.notification-close').addEventListener('click', function() {
+            document.querySelector('.notification').classList.remove('show');
+        });
+        
+        // Cursor effect
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', function(e) {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 100);
+        });
+        
+        document.addEventListener('mousedown', function() {
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            cursorFollower.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        });
+        
+        document.addEventListener('mouseup', function() {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+        
+        // Hover effect for links and buttons
+        const links = document.querySelectorAll('a, button');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = 'rgba(99, 102, 241, 0.2)';
+                cursorFollower.style.width = '30px';
+                cursorFollower.style.height = '30px';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'rgba(99, 102, 241, 0.5)';
+                cursorFollower.style.width = '40px';
+                cursorFollower.style.height = '40px';
+            });
+        });
+        
+        // Fade in animation for elements
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                
+                if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('resize', checkFade);
+        window.addEventListener('load', checkFade);
+        
+        // Neural network animation
+        function createNeuralNetwork() {
+            const neuralNetwork = document.querySelector('.neural-network');
+            if (!neuralNetwork) return;
+            
+            // Clear previous network
+            neuralNetwork.innerHTML = '';
+            
+            const layers = [4, 8, 8, 4]; // Number of nodes in each layer
+            const nodesByLayer = [];
+            
+            // Create nodes
+            layers.forEach((nodeCount, layerIndex) => {
+                const nodes = [];
+                for (let i = 0; i < nodeCount; i++) {
+                    const node = document.createElement('div');
+                    node.classList.add('node');
+                    
+                    // Position nodes
+                    const layerWidth = neuralNetwork.offsetWidth;
+                    const layerHeight = neuralNetwork.offsetHeight;
+                    
+                    const x = (layerWidth / (layers.length + 1)) * (layerIndex + 1);
+                    const y = (layerHeight / (nodeCount + 1)) * (i + 1);
+                    
+                    node.style.left = x + 'px';
+                    node.style.top = y + 'px';
+                    
+                    neuralNetwork.appendChild(node);
+                    nodes.push(node);
+                }
+                nodesByLayer.push(nodes);
+            });
+            
+            // Create connections between layers
+            for (let i = 0; i < nodesByLayer.length - 1; i++) {
+                const currentLayerNodes = nodesByLayer[i];
+                const nextLayerNodes = nodesByLayer[i + 1];
+                
+                currentLayerNodes.forEach(startNode => {
+                    nextLayerNodes.forEach(endNode => {
+                        const connection = document.createElement('div');
+                        connection.classList.add('connection');
+                        
+                        // Get positions
+                        const startRect = startNode.getBoundingClientRect();
+                        const endRect = endNode.getBoundingClientRect();
+                        const networkRect = neuralNetwork.getBoundingClientRect();
+                        
+                        const startX = startRect.left - networkRect.left + startNode.offsetWidth / 2;
+                        const startY = startRect.top - networkRect.top + startNode.offsetHeight / 2;
+                        const endX = endRect.left - networkRect.left + endNode.offsetWidth / 2;
+                        const endY = endRect.top - networkRect.top + endNode.offsetHeight / 2;
+                        
+                        // Calculate length and angle
+                        const length = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+                        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+                        
+                        // Set styles
+                        connection.style.width = length + 'px';
+                        connection.style.left = startX + 'px';
+                        connection.style.top = startY + 'px';
+                        connection.style.transform = `rotate(${angle}deg)`;
+                        
+                        neuralNetwork.appendChild(connection);
+                    });
+                });
+            }
+            
+            // Animate nodes
+            const nodes = document.querySelectorAll('.node');
+            nodes.forEach(node => {
+                setInterval(() => {
+                    node.style.backgroundColor = `rgb(${Math.floor(Math.random() * 100) + 99}, ${Math.floor(Math.random() * 100) + 102}, ${Math.floor(Math.random() * 100) + 241})`;
+                    node.style.boxShadow = `0 0 10px rgb(${Math.floor(Math.random() * 100) + 99}, ${Math.floor(Math.random() * 100) + 102}, ${Math.floor(Math.random() * 100) + 241})`;
+                }, Math.random() * 2000 + 1000);
+            });
+        }
+        
+        window.addEventListener('load', createNeuralNetwork);
+        window.addEventListener('resize', createNeuralNetwork);
+        
+        // Particle effect
+        function createParticles() {
+            const heroParticles = document.querySelector('.hero-particles');
+            if (!heroParticles) return;
+            
+            // Clear previous particles
+            heroParticles.innerHTML = '';
+            
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random position
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 3 + 1;
+                
+                // Random opacity
+                const opacity = Math.random() * 0.5 + 0.1;
+                
+                // Set styles
+                particle.style.left = x + '%';
+                particle.style.top = y + '%';
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.opacity = opacity;
+                
+                // Animation
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                heroParticles.appendChild(particle);
+            }
+        }
+        
+        window.addEventListener('load', createParticles);
+        
+        // Contact form submission
+        const contactForm = document.querySelector('.contact-form');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Basic validation
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            
+            setTimeout(() => {
+                // Reset form
+                contactForm.reset();
+                
+                // Show success message
+                submitButton.innerHTML = '<i class="fas fa-check mr-2"></i> Message Sent!';
+                
+                setTimeout(() => {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalText;
+                }, 3000);
+                
+                // Show notification
+                const notification = document.querySelector('.notification');
+                notification.querySelector('h4').textContent = 'Message Sent!';
+                notification.querySelector('p').textContent = 'We\'ll get back to you as soon as possible.';
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 5000);
+            }, 2000);
+        });
+        
+        // Initialize progress bars with animation
+        function initProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        }
+        
+        window.addEventListener('load', initProgressBars);
+        
+        // Data chart animation
+        function animateDataChart() {
+            const bars = document.querySelectorAll('.data-bar');
+            
+            bars.forEach(bar => {
+                const height = Math.floor(Math.random() * 70) + 30 + '%';
+                bar.style.height = '0';
+                
+                setTimeout(() => {
+                    bar.style.height = height;
+                }, Math.random() * 1000);
+            });
+        }
+        
+        window.addEventListener('load', animateDataChart);
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.card, .feature-card, .ai-model-card, .testimonial-card').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Update active nav link on scroll
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= sectionTop - 150 && window.pageYOffset < sectionTop + sectionHeight - 150) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNavLink);
+        window.addEventListener('load', updateActiveNavLink);
+    </script>
+</body>
+</html>
